@@ -30,6 +30,7 @@ import {
   Language,
 } from '@mui/icons-material';
 import SkillOrbitLogo from '../components/SkillOrbitLogo';
+import api from '../api/axios';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -112,8 +113,8 @@ const Landing = () => {
   useEffect(() => {
     const fetchTrendingData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/trending');
-        const data = await response.json();
+        const response = await api.get('/trending');
+        const data = response.data;
         
         setTrendingData({
           trendingDomains: data.trendingDomains || trendingDomains,
